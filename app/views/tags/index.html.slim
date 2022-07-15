@@ -1,4 +1,8 @@
-h1
-  | Tag#index
-p
-  | Find me in app/views/tag/index.html.erb
+div
+- @tags.each do |tag|
+ = tag.name
+
+= form_with model: @tag do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.submit "登録"
