@@ -1,8 +1,9 @@
 div
-- @tags.each do |tag|
- = tag.name
-
-= form_with model: Tag.new do |f|
+= form_with model: @user do |f|
+  = f.collection_check_boxes :tag_ids, Tag.all, :name, :name do |tag|
+    = tag.label do
+      = tag.check_box
+      = tag.text
   = f.label :name
   = f.text_field :name, value: @user_tags
   = f.submit "登録"
