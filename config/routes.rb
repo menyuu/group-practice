@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'groups/index'
-  get 'groups/show'
-  get 'groups/new'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     session: 'users/sessions'

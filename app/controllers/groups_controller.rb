@@ -7,6 +7,19 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Grop.new
+    @group = Group.new
+  end
+
+  def create
+    group = Group.new(group_params)
+    group.owner_id = current_user.id
+    group.save
+    redirect_to groups_path
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:name)
   end
 end

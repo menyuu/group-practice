@@ -1,0 +1,7 @@
+div
+- @groups.each do |group|
+  = group.name
+  = group.owner_id
+
+
+= link_to "グループ作成", new_group_path
