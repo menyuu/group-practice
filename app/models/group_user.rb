@@ -20,5 +20,5 @@
 #
 class GroupUser < ApplicationRecord
   belongs_to :group
-  belongs_to :owner, class_name: "User"
+  belongs_to :user
 end

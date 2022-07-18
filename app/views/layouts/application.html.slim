@@ -17,6 +17,7 @@ html
     = link_to "ログアウト", destroy_user_session_path, method: :delete
     = link_to "ユーザー一覧",users_path
     = link_to "タグ一覧", tags_path
+    = link_to "グループ一覧", groups_path
     - if flash[:notice]
       = flash[:notice]
     = yield
