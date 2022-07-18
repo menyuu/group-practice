@@ -1,8 +1,15 @@
 div
-- @tags.each do |tag|
- = tag.name
+= form_with model: @user, url: user_tags_update_path(current_user) do |f|
+  = f.collection_check_boxes :tag_ids, Tag.all, :id, :name,  include_hidden: false do |tag|
+    = tag.label do
+      = tag.check_box
+      = tag.text
+  = f.submit "タグを追加する"
 
-= form_with model: @tag do |f|
+= form_with model: Tag.new, url:  tags_create_users_path do |f|
   = f.label :name
   = f.text_field :name
-  = f.submit "登録"
+  = f.submit "タグを新規作成する"
+
+- @tags.each do |tag|
+  = tag.name
