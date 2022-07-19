@@ -1,2 +1,11 @@
-h1 Groups#show
-p Find me in app/views/groups/show.html.slim
+div
+  = @group.name
+  = @group.owner_id
+  - @group.users.each do |user|
+    = user.name
+div
+  - @group_users.each do |group_user|
+    = group_user.group_id
+
+= link_to "抜ける", group_group_users_path(@group), method: :delete
+= link_to "入る", group_group_users_path(@group), method: :post

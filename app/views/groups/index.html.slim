@@ -1,6 +1,6 @@
 div
 - @groups.each do |group|
-  = group.name
+  = link_to group.name, group_path(group)
   = group.owner_id
 
 

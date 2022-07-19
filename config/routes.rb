@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     post 'users/sign_up/confirm', to: 'users/registrations#confirm'
     get 'users/sign_up/complete', to: 'users/registrations#complete'
   end
-  resources :groups, only: [:index, :show, :new, :create, :update]
+  resources :groups, only: [:index, :show, :new, :create, :update] do
+    resource :group_users, only: [:create, :destroy]
+  end
   resources :tags, only: [:index, :edit, :create, :update, :destroy]
   resources :users, only: [:index, :show, :edit, :update] do
     post "tags/create" => "users#user_tag_create", on: :collection

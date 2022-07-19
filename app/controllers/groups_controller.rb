@@ -4,6 +4,8 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:id])
+    @group_users = GroupUser.where(group_id: params[:id])
   end
 
   def new
@@ -14,6 +16,7 @@ class GroupsController < ApplicationController
     group = Group.new(group_params)
     group.owner_id = current_user.id
     group.save
+    group.users << current_user
     redirect_to groups_path
   end
 
