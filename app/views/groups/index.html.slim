@@ -1,7 +1,7 @@
 div
-- @groups.each do |group|
-  = link_to group.name, group_path(group)
-  = group.owner_id
+  - @groups.each do |group|
+    = link_to group.name, group_path(group)
+    = group.owner_id
 
-
-= link_to "グループ作成", new_group_path
+div
+  = link_to "グループ作成", new_group_path

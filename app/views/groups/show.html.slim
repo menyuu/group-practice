@@ -7,5 +7,27 @@ div
   - @group_users.each do |group_user|
     = group_user.group_id
 
-= link_to "抜ける", group_group_users_path(@group), method: :delete
-= link_to "入る", group_group_users_path(@group), method: :post
+div
+  | たぐのなまえ
+  div
+  - @group.tags.each do |tag|
+    = tag.name
+
+div
+  = link_to "抜ける", group_group_users_path(@group), method: :delete
+  = link_to "入る", group_group_users_path(@group), method: :post
+
+div
+  = form_with model: Group.new, url: group_tags_create_path(@group) do |f|
+    = f.label :name
+    = f.text_field :name
+    = f.submit "登録"
+
+div
+  = form_with model: @group, url: group_tags_update_path(@group) do |f|
+    = f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
+      = tag.label do
+        = tag.check_box
+        = tag.text
+    = f.submit "更新"
+

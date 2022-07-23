@@ -20,6 +20,31 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  def group_tag_create
+    group = Group.find(params[:group_id])
+    tags = params[:group][:name].split(',')
+    tags.each do |tag|
+      tag = Tag.find_or_create_by(name: tag)
+      group.tags << tag
+    end
+    redirect_to group_path(group)
+  end
+
+  def group_tag_update
+    group = Group.find(params[:group_id])
+    if params[:group][:tag_ids]
+      get_tags = Tag.where(id: params[:group][:tag_ids])
+      tags = []
+      get_tags.each do |tag|
+        tags.push(tag.name)
+      end
+      group.tag_save(tags)
+      redirect_to group_path(group)
+    else
+      redirect_to group_path(group)
+    end
+  end
+
   private
 
   def group_params

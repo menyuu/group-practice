@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
   resources :groups, only: [:index, :show, :new, :create, :update] do
     resource :group_users, only: [:create, :destroy]
+    post "tags/create" => "groups#group_tag_create"
+    patch "tags/update" => "groups#group_tag_update"
   end
   resources :tags, only: [:index, :edit, :create, :update, :destroy]
   resources :users, only: [:index, :show, :edit, :update] do
