@@ -19,4 +19,18 @@ class Group < ApplicationRecord
     group_users.exists?(user_id: user.id)
   end
 
+  def sameHasTag?(user)
+    group_tags = Tag.where(group_id: self)
+    user_tags = Tag.where(user_id: user)
+    group_tags.each do |group_tag|
+    end
+  end
+
 end
+
+
+# group_tags = self.group_tags
+#     user_tags = user.tag_users
+#     group_tags.each do |group_tag|
+#       user_tags.all? { |user_tag| user_tag.tag.name == group_tag.tag.name }
+#     end

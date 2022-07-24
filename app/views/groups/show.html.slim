@@ -14,8 +14,9 @@ div
     = tag.name
 
 div
-  = link_to "抜ける", group_group_users_path(@group), method: :delete
-  = link_to "入る", group_group_users_path(@group), method: :post
+  - if @group.sameHasTag?(current_user)
+    = link_to "抜ける", group_group_users_path(@group), method: :delete
+    = link_to "入る", group_group_users_path(@group), method: :post
 
 div
   = form_with model: Group.new, url: group_tags_create_path(@group) do |f|
