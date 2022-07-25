@@ -20,10 +20,7 @@ class Group < ApplicationRecord
   end
 
   def sameHasTag?(user)
-    group_tags = Tag.where(group_id: self)
-    user_tags = Tag.where(user_id: user)
-    group_tags.each do |group_tag|
-    end
+    tags.any? { |i| user.tags.include?(i) }
   end
 
 end
