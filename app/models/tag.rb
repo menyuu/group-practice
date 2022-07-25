@@ -10,6 +10,7 @@
 class Tag < ApplicationRecord
   has_many :tag_users
   has_many :users, through: :tag_users
-  
-  
+  has_many :group_tags, dependent: :destroy
+  has_many :groups, through: :group_tags, source: :group
+
 end
